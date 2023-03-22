@@ -6,7 +6,7 @@ const charSchema = new Schema({
     name: String,
     stats: { sword: Number, def: Number, core: Number, magic: Number, spd: Number},
     lvl: { type: Number, default: 1},
-    rank: { type: String, default: 'F'},
+    rank: { type: String, default: 'none'},
     hp: { type: Number, default: 300},
     maxHp: { type: Number, default: 300},
     mp: { type: Number, default: 100},
@@ -40,7 +40,8 @@ const charSchema = new Schema({
     points: { type: Number, default: 1},
     coins: { type: Number, default: 5000 },
     pendingMoney: [{ desc: String,  from: String, amount: Number, claimed: Boolean }],
-    survival: { hunger: {type: Number, default: 100}, sleep: {type: Number, default: 100} }
+    survival: { hunger: {type: Number, default: 100}, sleep: {type: Number, default: 100} },
+    aptitude: { type: Array, default: []}
 })
 
 module.exports = CharModel = model("character", charSchema)
