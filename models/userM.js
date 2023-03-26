@@ -10,4 +10,4 @@ const userSchema = new Schema({
     {timestamps: true}
 )
 
-module.exports = UzerModel = mongoose.model("Users", userSchema)
+module.exports = UzerModel = model("Users", userSchema)
