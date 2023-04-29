@@ -86,7 +86,7 @@ router.patch("/additem/:id", auth, async (req,res) => {
     try {
         const character = await Character.findOne({owner: req.params.id})
         if(!character) return res.json("notfound")
-        const cannotDuplicates = ['sword', 'armor']
+        const cannotDuplicates = ['sword', 'armor', 'shield', 'gear', 'helmet']
         let canDuplicate = true
         cannotDuplicates.forEach(itemName => {
             if(itemName === req.body.itemType) canDuplicate = false            
