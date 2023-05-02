@@ -35,10 +35,9 @@ const charSchema = new Schema({
     items: [{ cState: Number, durability: Number, meshId: String, name: String, itemType: String, plusDef: Number, plusDmg: Number, 
     magRes: Number, plusMag: Number, price: Number, qnty: Number}],
     skills: [{skillId: String, name: String, power: Number, demand: {name: String, cost: Number}, rank: String, skillType: String}],
-    killQuest: [{questId: String, title: String, def: String, reward: Number, demandKills: Number, kills: Number, isComplete: Boolean}],
+    quests: {type: Array, default: []},
     titles: { type: Array, default: [] },
-    profession: { name: String, rank: Number},
-    clearedQuests: Number,
+    clearedQuests: { totalCleared: {type: Number, default: 0}, currPoints: {type: Number, default: 0}},
     currentPlace: String,
     places: { type: Array, default: [] }, 
     status: { type: Array, default: []}, // sickness //poisoned etc
@@ -50,7 +49,7 @@ const charSchema = new Schema({
     aptitude: { type: Array, default: []},
     monsterKilled: { type: Number, default: 0},
     defeatedMonsters: { type: Array, default: []},
-    aptitude: ['fire', 'wind'],
+    aptitude: {type: Array, default: []},
     storyQue: { type: Array, default: []},
     mainObj: { name: String , dn: String},
     blessings: { type: Array, default: [] }

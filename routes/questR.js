@@ -41,17 +41,17 @@ router.post("/save", async (req, res) => {
         log(error)
     }
 })
-// update haveBot to false after bot destroyed !
+
 router.delete("/delete/:id", async (req,res) => {
     try{
-        const theChar = await questModel.findById(req.params.id)
-        if(!theChar) return res.json({message: "not found char"})
+        const theQ = await questModel.findById(req.params.id)
+        if(!theQ) return res.json({message: "quest not found"})
         await questModel.findByIdAndDelete(req.params.id)
+        log("deleted successfully")
+        return res.json(await questModel.find());
     }catch(err){
         res.json(err).status(400)
     }
-    log("deleted successfully")
-    res.json(await questModel.find());
 })
 
 module.exports = router

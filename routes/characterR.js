@@ -147,13 +147,24 @@ router.patch("/deductitem/:id", auth, async (req,res) => {
     }
 })
 router.patch("/updateall/:id", auth, async (req,res) => {
-
     try {
         const character = await Character.findById(req.params.id)
         if(!character) return res.json("notfound").status(400)
         
         const theCharac = await Character.findByIdAndUpdate(req.params.id, req.body, {new: true})
 
+        res.json(theCharac)
+    } catch (error) {
+        res.json(error).status(400)
+    }
+})
+router.patch("/myquest/add/:id", auth, async (req, res) => {
+    try {
+        const character = await Character.findById(req.params.id)
+        if(!character) return res.json("notfound").status(400)
+        character.quests.push(req.body)
+        const newQuests = character.quests
+        const theCharac = await Character.findByIdAndUpdate(req.params.id, { quests: newQuests}, {new: true})
         res.json(theCharac)
     } catch (error) {
         res.json(error).status(400)
