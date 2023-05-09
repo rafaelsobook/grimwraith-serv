@@ -49,7 +49,6 @@ const charSchema = new Schema({
     aptitude: { type: Array, default: []},
     monsterKilled: { type: Number, default: 0},
     defeatedMonsters: { type: Array, default: []},
-    aptitude: {type: Array, default: []},
     storyQue: { type: Array, default: []},
     mainObj: { name: String , dn: String},
     blessings: { type: Array, default: [] }
