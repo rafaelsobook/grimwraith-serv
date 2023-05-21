@@ -51,7 +51,8 @@ const charSchema = new Schema({
     defeatedMonsters: { type: Array, default: []},
     storyQue: { type: Array, default: []},
     mainObj: { name: String , dn: String},
-    blessings: { type: Array, default: [] }
+    blessings: { type: Array, default: [] },
+    mycrafts: { type: Array, default: [] }
 })
 
 module.exports = CharModel = model("character", charSchema)

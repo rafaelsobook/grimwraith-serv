@@ -55,7 +55,6 @@ router.patch("/updateloc/:id", auth, async (req,res) => {
         const characterUpdated = await Character.findByIdAndUpdate(req.params.id, {x: mypos.x, z: mypos.z, survival}, {new: true})
 
         res.json(characterUpdated)
-        log(characterUpdated)
     } catch (error) {
         res.json(error).status(400)
     }
@@ -76,7 +75,6 @@ router.patch("/updateplace/:id", auth, async (req,res) => {
         const characterUpdated = await Character.findByIdAndUpdate(req.params.id, {currentPlace: req.body.currentPlace, places: myPlaces}, {new: true})
 
         res.json(characterUpdated)
-        log(characterUpdated)
     } catch (error) {
         res.json(error).status(400)
     }
@@ -137,6 +135,12 @@ router.patch("/deductitem/:id", auth, async (req,res) => {
                 newArr = character.items.filter(item => item.meshId !== req.body.meshId)
             }else{
                 newArr = character.items.map(item => item.meshId === req.body.meshId ? {...item, qnty: item.qnty-=req.body.qnty } : item)
+                // check again baka naging 0 na pagka bawas
+                const updatedItem = newArr.find(item => item.meshId === req.body.meshId)
+                if(updatedItem.qnty < 1){
+                    log("wala ng natira pagka deduct")
+                    newArr = newArr.filter(item => item.meshId !== req.body.meshId)
+                }
             }
         }
         const theCharac = await Character.findByIdAndUpdate(character._id, {items: newArr}, {new: true})
