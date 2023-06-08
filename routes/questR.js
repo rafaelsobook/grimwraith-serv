@@ -29,6 +29,8 @@ router.get("/", async (req, res) => {
 })
 router.post("/save", async (req, res) => {
 // IN HERE YOU MUST FIND THE SENDER TO BE AN ADMIN INORDER TO SAVE SOME QUESTS
+    console.log("we will save this")
+    console.log(req.body)
     try {
         const newQuest = new questModel({...req.body, questId: Math.random().toString().split(".")[1]})
 
