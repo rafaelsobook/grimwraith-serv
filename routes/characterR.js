@@ -19,6 +19,13 @@ function auth(req,res, next){
         return res.json('tokenfailed')
     }
 }
+router.get("/", auth, async (req, res) => {
+    try {
+        res.json(await Character.find())
+    } catch (error) {
+        res.send(error).status(400)
+    }
+})
 router.get("/:id", auth, async (req, res) => {
     try {
         const charDet = await Character.findOne({owner: req.params.id})
@@ -124,27 +131,31 @@ router.patch("/updateweapon/:id", auth, async (req,res) => {
 })
 router.patch("/deductitem/:id", auth, async (req,res) => {
     try {
-        const character = await Character.findById(req.params.id)
+        let character = await Character.findById(req.params.id)
         if(!character) return log("notfound")
         const theItem = character.items.find(item => item.meshId === req.body.meshId)
+        log(theItem)
         if(!theItem) return log("item notfound")
-        let newArr
 
         if(theItem){
             if(theItem.qnty === 1){
-                newArr = character.items.filter(item => item.meshId !== req.body.meshId)
+                character.items = character.items.filter(item => item.meshId !== req.body.meshId)
             }else{
-                newArr = character.items.map(item => item.meshId === req.body.meshId ? {...item, qnty: item.qnty-=req.body.qnty } : item)
+                character.items = character.items.map(item => item.meshId === req.body.meshId ? {...item, qnty: item.qnty-=req.body.qnty } : item)
                 // check again baka naging 0 na pagka bawas
-                const updatedItem = newArr.find(item => item.meshId === req.body.meshId)
+
+                log(character.name)
+                log(character.items)
+                const updatedItem = character.items.find(item => item.meshId === req.body.meshId)
                 if(updatedItem.qnty < 1){
                     log("wala ng natira pagka deduct")
-                    newArr = newArr.filter(item => item.meshId !== req.body.meshId)
+                    character.items = character.items.filter(item => item.meshId !== req.body.meshId)
                 }
             }
         }
-        const theCharac = await Character.findByIdAndUpdate(character._id, {items: newArr}, {new: true})
 
+        const theCharac = await Character.findByIdAndUpdate(req.params.id, character, {new: true})
+        
         res.json(theCharac)
     } catch (error) {
         res.json(error).status(400)
