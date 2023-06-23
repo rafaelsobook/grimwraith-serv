@@ -42,6 +42,34 @@ router.post("/save", async (req, res) => {
         res.send(error).status(400)
         log(error)
     }
+    // { // monster save
+    //     "questId": "automatically generated",
+    //     "questTarget": { "targetName": "goblin", "targetType": "normal" },
+    //     "title": "Minotaur Horde", 
+    //     "def": "Minotaur of hordes are found on the swamp forest", 
+    //     "reward": { "rewardType": "both", "rewardItems": ["spotion", "bigpotion"],
+    //     "rewardCoin": 700 }, 
+    //     "demandNumber": 5, 
+    //     "currentNumber": 0,
+    //     "addPoints": 70,
+    //     "requiredRank": "2",
+    //     "questPicName": "minslayer"
+    // }
+
+    // edibles
+    // {
+    //     "questId": "automatically generated",
+    //     "questTarget": { "targetName": "stam1", "targetType": "edibles" },
+    //     "title": "Pick flowe herb", 
+    //     "def": "In Short of stamina herbs", 
+    //     "reward": { "rewardType": "cash", "rewardItems": [],
+    //     "rewardCoin": 100 }, 
+    //     "demandNumber": 1, 
+    //     "currentNumber": 0,
+    //     "addPoints": 10,
+    //     "requiredRank": "0",
+    //     "questPicName": ""
+    // }
 })
 
 router.delete("/delete/:id", async (req,res) => {
