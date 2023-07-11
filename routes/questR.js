@@ -31,6 +31,8 @@ router.post("/save", async (req, res) => {
 // IN HERE YOU MUST FIND THE SENDER TO BE AN ADMIN INORDER TO SAVE SOME QUESTS
     console.log("we will save this")
     console.log(req.body)
+    if(req.body.secKey !== "rafadmin") return res.json("error").status(400)
+    if(!req.body.questTarget) return res.json("error no quest target").status(400)
     try {
         const newQuest = new questModel({...req.body, questId: Math.random().toString().split(".")[1]})
 
