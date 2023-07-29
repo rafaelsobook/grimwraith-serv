@@ -34,7 +34,7 @@ const charSchema = new Schema({
     magRes: Number, plusMag: Number, price: Number},
     items: [{ cState: Number, durability: Number, meshId: String, name: String, itemType: String, plusDef: Number, plusDmg: Number, 
     magRes: Number, plusMag: Number, price: Number, qnty: Number}],
-    skills: [{skillId: String, name: String, power: Number, demand: {name: String, cost: Number}, rank: String, skillType: String}],
+    skills: { type: Array, default: []},
     quests: {type: Array, default: []},
     titles: { type: Array, default: [] },
     clearedQuests: { totalCleared: {type: Number, default: 0}, currPoints: {type: Number, default: 0}},
