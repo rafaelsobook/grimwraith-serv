@@ -52,7 +52,8 @@ const charSchema = new Schema({
     storyQue: { type: Array, default: []},
     mainObj: { name: String , dn: String},
     blessings: { type: Array, default: [] },
-    mycrafts: { type: Array, default: [] }
+    mycrafts: { type: Array, default: [] },
+    race: String
 })
 
 module.exports = CharModel = model("character", charSchema)
