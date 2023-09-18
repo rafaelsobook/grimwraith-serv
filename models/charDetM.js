@@ -37,6 +37,7 @@ const charSchema = new Schema({
     skills: { type: Array, default: []},
     quests: {type: Array, default: []},
     titles: { type: Array, default: [] },
+    minnions: { type: Array, default: [] },
     clearedQuests: { totalCleared: {type: Number, default: 0}, currPoints: {type: Number, default: 0}},
     currentPlace: String,
     places: { type: Array, default: [] }, 
@@ -53,7 +54,10 @@ const charSchema = new Schema({
     mainObj: { name: String , dn: String},
     blessings: { type: Array, default: [] },
     mycrafts: { type: Array, default: [] },
-    race: String
+    race: String,
+    raceLevel: { type: Number, default: 1 },
+    auraType: { type: String, default: "ordinary"},
+    auraOn: { type: Boolean, default: false }
 })
 
 module.exports = CharModel = model("character", charSchema)
