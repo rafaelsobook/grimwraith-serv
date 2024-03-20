@@ -1,10 +1,9 @@
 const { Schema, model } = require("mongoose")
 
-
 const charSchema = new Schema({
     owner: String,
     name: String,
-    stats: { sword: Number, def: Number, core: Number, magic: Number, spd: {type: Number, default: 3.5}},
+    stats: { weapon: Number, accuracy: Number, critical: Number, dex: Number, strength: Number, magic: Number, spd: {type: Number, default: 3.5}},
     lvl: { type: Number, default: 1},
     rank: { type: String, default: 'none'},
     hp: { type: Number, default: 300},
@@ -22,42 +21,26 @@ const charSchema = new Schema({
     hair: String,
     boots: String,
     hairColor: {r: Number, g: Number, b: Number},
-    helmet: { cState: Number, durability: Number, meshId: String, name: String, itemType: String, plusDef: Number, plusDmg: Number, 
-    magRes: Number, plusMag: Number, price: Number},
-    shield: { cState: Number, durability: Number, meshId: String, name: String, itemType: String, plusDef: Number, plusDmg: Number, 
-    magRes: Number, plusMag: Number, price: Number},
-    gear: { cState: Number, durability: Number, meshId: String, name: String, itemType: String, plusDef: Number, plusDmg: Number, 
-    magRes: Number, plusMag: Number, price: Number},
-    weapon: { cState: Number, durability: Number, meshId: String, name: String, itemType: String, plusDef: Number, plusDmg: Number, 
-    magRes: Number, plusMag: Number, price: Number},
-    armor:{ cState: Number, durability: Number, meshId: String, name: String, itemType: String, plusDef: Number, plusDmg: Number, 
-    magRes: Number, plusMag: Number, price: Number},
-    items: [{ cState: Number, durability: Number, meshId: String, name: String, itemType: String, plusDef: Number, plusDmg: Number, 
-    magRes: Number, plusMag: Number, price: Number, qnty: Number}],
+    clothColor: {r: Number, g: Number, b: Number},
+    pantsColor: {r: Number, g: Number, b: Number},
+    items: {type: Array, default: []},
     skills: { type: Array, default: []},
     quests: {type: Array, default: []},
     titles: { type: Array, default: [] },
-    minnions: { type: Array, default: [] },
     clearedQuests: { totalCleared: {type: Number, default: 0}, currPoints: {type: Number, default: 0}},
     currentPlace: String,
     places: { type: Array, default: [] }, 
     status: { type: Array, default: []}, // sickness //poisoned etc
     regens: {sp: Number, hp: Number, mana: Number},
-    points: { type: Number, default: 1},
-    coins: { type: Number, default: 5000 },
-    pendingMoney: [{ desc: String,  from: String, amount: Number, claimed: Boolean }],
+    monsSoul: { type: Number, default: 1}, // same like points system
+    coins: { type: Number, default: 100 },
     survival: { hunger: {type: Number, default: 100}, sleep: {type: Number, default: 100} },
-    aptitude: { type: Array, default: []},
+    aptitude: { type: Array, default: [] },
     monsterKilled: { type: Number, default: 0},
-    defeatedMonsters: { type: Array, default: []},
+    defeatedMonsters: { type: Array, default: []}, // name of monsters
     storyQue: { type: Array, default: []},
-    mainObj: { name: String , dn: String},
     blessings: { type: Array, default: [] },
-    mycrafts: { type: Array, default: [] },
-    race: String,
-    raceLevel: { type: Number, default: 1 },
-    auraType: { type: String, default: "ordinary"},
-    auraOn: { type: Boolean, default: false }
+    race: String
 })
 
 module.exports = CharModel = model("character", charSchema)

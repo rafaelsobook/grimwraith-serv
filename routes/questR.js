@@ -44,7 +44,8 @@ router.post("/save", async (req, res) => {
         res.send(error).status(400)
         log(error)
     }
-    // { // monster save
+    // example monster quest
+    // { 
     //     "questId": "automatically generated",
     //     "questTarget": { "targetName": "goblin", "targetType": "normal" },
     //     "title": "Minotaur Horde", 
@@ -55,7 +56,8 @@ router.post("/save", async (req, res) => {
     //     "currentNumber": 0,
     //     "addPoints": 70,
     //     "requiredRank": "2",
-    //     "questPicName": "minslayer"
+    //     "questPicName": "minslayer",
+    //     "secKey": "rafadmin"
     // }
 
     // edibles
@@ -70,7 +72,8 @@ router.post("/save", async (req, res) => {
     //     "currentNumber": 0,
     //     "addPoints": 10,
     //     "requiredRank": "0",
-    //     "questPicName": ""
+    //     "questPicName": "",
+    //     "secKey": "rafadmin"
     // }
 })
 

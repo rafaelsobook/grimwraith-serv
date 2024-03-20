@@ -9,13 +9,13 @@ const Users = require("../models/userM.js")
 function auth(req,res, next){
     try {
         const token = req.headers.authori.split(" ")[1]
-        log(token)
+
         const decodedData = jwt.verify(token, process.env.JWT_SEC)
 
         req.userId = decodedData.id
         next()
     } catch (error) {
-        return res.send('did not pass authentication')
+        return res.json('did not pass authentication')
     }
 }
 router.get("/", auth, async (req, res) => {
@@ -32,7 +32,7 @@ router.post("/register", async (req, res) => {
 
     try {
         const Uzer = await Users.findOne({username: username})
-        if(Uzer) return res.json("exist")
+        if(Uzer) return res.json("Username Exist").status(400)
 
         const pass = await bcrypt.hash(password, 10)
 
@@ -66,7 +66,6 @@ router.post("/login", async (req, res) => {
 
 router.get("/:id", auth, async (req, res) => {
    
-
     const validPerson = await Users.findById(req.params.id)
     if(!validPerson) return res.json("norecord")
 
