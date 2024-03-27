@@ -20,14 +20,13 @@ const charSchema = new Schema({
     pants: String,
     hair: String,
     boots: String,
+    skinColor: {r: Number, g: Number, b: Number, name: String},
     hairColor: {r: Number, g: Number, b: Number},
     clothColor: {r: Number, g: Number, b: Number},
     pantsColor: {r: Number, g: Number, b: Number},
     items: {type: Array, default: []},
     skills: { type: Array, default: []},
-    quests: {type: Array, default: []},
-    titles: { type: Array, default: [] },
-    clearedQuests: { totalCleared: {type: Number, default: 0}, currPoints: {type: Number, default: 0}},
+    titles: { type: Array, default: [] },    
     currentPlace: String,
     places: { type: Array, default: [] }, 
     status: { type: Array, default: []}, // sickness //poisoned etc
@@ -38,8 +37,13 @@ const charSchema = new Schema({
     aptitude: { type: Array, default: [] },
     monsterKilled: { type: Number, default: 0},
     defeatedMonsters: { type: Array, default: []}, // name of monsters
-    storyQue: { type: Array, default: []},
     blessings: { type: Array, default: [] },
+    // { qName: "", qTitle: "", desc: "", questType: //story//hunt//reqItem }
+    // for: npcName, require: { name: "daedalus"//reqItem//"goblin"//hunt, current:0, total: 5 }
+    // in creation of NPC they have a list of quest that will match the title of this quest so
+    // you wont have any problems what will go first
+    pendingQuests: {type: Array, default: []},
+    clearedQuests: {type: Array, default: []},
     race: String
 })
 
