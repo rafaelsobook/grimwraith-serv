@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose")
 const charSchema = new Schema({
     owner: String,
     name: String,
-    stats: { weapon: Number, accuracy: Number, critical: Number, dex: Number, strength: Number, magic: Number, spd: {type: Number, default: 3.5}},
+    stats: { weapon: Number, accuracy: Number, critical: Number, dex: Number, strength: Number, magic: Number, spd: {type: Number, default: 4}},
     lvl: { type: Number, default: 1},
     rank: { type: String, default: 'none'},
     hp: { type: Number, default: 300},
@@ -39,12 +39,15 @@ const charSchema = new Schema({
     defeatedMonsters: { type: Array, default: []}, // name of monsters
     blessings: { type: Array, default: [] },
     // { qName: "", qTitle: "", desc: "", questType: //story//hunt//reqItem }
-    // for: npcName, require: { name: "daedalus"//reqItem//"goblin"//hunt, current:0, total: 5 }
+    // talkTo: npcName, huntRequire: { name: "daedalus"//reqItem//"goblin"//hunt, current:0, total: 5 }
     // in creation of NPC they have a list of quest that will match the title of this quest so
     // you wont have any problems what will go first
-    pendingQuests: {type: Array, default: []},
+    stories:{type: Array, default: []},// for story
+    quests: {type: Array, default: []}, //
     clearedQuests: {type: Array, default: []},
-    race: String
+    race: String,
+    characterType: { type: String, default: "player"},
+    lastSpoken: {type: String, default: "none"}
 })
 
 module.exports = CharModel = model("character", charSchema)
