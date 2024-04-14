@@ -3,7 +3,16 @@ const { Schema, model } = require("mongoose")
 const charSchema = new Schema({
     owner: String,
     name: String,
-    stats: { weapon: Number, accuracy: Number, critical: Number, dex: Number, strength: Number, magic: Number, spd: {type: Number, default: 4}},
+    stats: { 
+        weapon: Number, 
+        accuracy: Number, 
+        critical: Number, 
+        dex: Number, 
+        strength: Number, 
+        magic: Number, 
+        spd: {type: Number, default: 4},
+        atkSpd: {type: Number, default: 4},
+    },
     lvl: { type: Number, default: 1},
     rank: { type: String, default: 'none'},
     hp: { type: Number, default: 300},
