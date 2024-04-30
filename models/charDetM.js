@@ -11,7 +11,7 @@ const charSchema = new Schema({
         strength: Number, 
         magic: Number, 
         spd: {type: Number, default: 4},
-        atkSpd: {type: Number, default: 4},
+        atkSpd: {type: Number, default: .9},
     },
     lvl: { type: Number, default: 1},
     rank: { type: String, default: 'none'},
