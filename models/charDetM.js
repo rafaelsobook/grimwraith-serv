@@ -56,7 +56,9 @@ const charSchema = new Schema({
     clearedQuests: {type: Array, default: []},
     race: String,
     characterType: { type: String, default: "player"},
-    lastSpoken: {type: String, default: "none"}
+    lastSpoken: {type: String, default: "none"},
+    deadCount: { type: Number, default: 1},
+    isDead: { type: Boolean,  default: false}
 })
 
 module.exports = CharModel = model("character", charSchema)
