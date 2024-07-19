@@ -46,7 +46,7 @@ const charSchema = new Schema({
     aptitude: { type: Array, default: [] },
     monsterKilled: { type: Number, default: 0},
     defeatedMonsters: { type: Array, default: []}, // name of monsters
-    blessings: { type: Array, default: [] },
+    blessings: { type: Array, default: [] }, // aka abilities
     // { qName: "", qTitle: "", desc: "", questType: //story//hunt//reqItem }
     // talkTo: npcName, huntRequire: { name: "daedalus"//reqItem//"goblin"//hunt, current:0, total: 5 }
     // in creation of NPC they have a list of quest that will match the title of this quest so
