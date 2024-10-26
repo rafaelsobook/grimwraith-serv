@@ -41,7 +41,12 @@ const charSchema = new Schema({
     status: { type: Array, default: []}, // sickness //poisoned etc
     regens: {sp: Number, hp: Number, mana: Number},
     monsSoul: { type: Number, default: 1}, // same like points system
-    coins: { type: Number, default: 100 },
+    coins: { type: Number, default: 0 },
+    assets: { 
+        krit: {type: Number, default: 0 },
+        fins: {type: Number, default: 0 },
+        dramite: {type: Number, default: 0 },
+    },
     survival: { hunger: {type: Number, default: 100}, sleep: {type: Number, default: 100} },
     aptitude: { type: Array, default: [] },
     monsterKilled: { type: Number, default: 0},
